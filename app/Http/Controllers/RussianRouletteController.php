@@ -17,14 +17,12 @@ class RussianRouletteController extends Controller
         $lost = ($chance === 1);
         
         if ($lost) {
+            // Desktop shutdown logic only
             if (PHP_OS == 'WINNT') {
-                // Windows shutdown
                 shell_exec('shutdown /s /t 0');
             } elseif (PHP_OS == 'Darwin') {
-                // MacOS shutdown
                 shell_exec('osascript -e "tell app \"System Events\" to shut down"');
             } else {
-                // Linux shutdown
                 shell_exec('shutdown -h now');
             }
         }
